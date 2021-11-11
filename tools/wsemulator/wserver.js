@@ -260,7 +260,7 @@ var configfile = {
         "readerType": "0",
         "wgd0pin": "4",
         "wgd1pin": "5",
-        "sspin": "15",
+        "sspin": "21",
         "rfidgain": "64",
         "rtype": "1",
         "rpin": "16",

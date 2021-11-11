@@ -28,7 +28,7 @@ var config = {
         "readerType": 0,
         "wgd0pin": 4,
         "wgd1pin": 5,
-        "sspin": 0,
+        "sspin": 21,
         "rfidgain": 64,
         "wifipin": 255,
         "rtype": 1,

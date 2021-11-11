@@ -79,7 +79,7 @@ The following table shows the typical pin layout used for connecting readers har
 * Open your browser and type either "http://192.168.4.1" or "http://esp-rfid.local" (.local needs Bonjour installed on your computer) on address bar.
 * Log on to ESP, default password is "admin"
 * Go to "Settings" page
-* Configure your amazing access control device. Push "Scan" button to join your wireless network, configure RFID hardware, Relay Module.
+* Configure your amazing access control device. Configure the Access Point SSID or choose client and push "Scan" button to join your wireless network, configure RFID hardware, Relay Module.
 * Save settings, when rebooted your ESP will try to join your wireless network.
 * Check your new IP address from serial monitor and connect to your ESP again. (You can also connect to "http://esp-rfid.local")
 * Go to "Users" page

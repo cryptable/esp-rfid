@@ -88,10 +88,14 @@ bool loadConfiguration()
 
 	autoRestartIntervalSeconds = general["restart"];
 	wifiTimeout = network["offtime"];
-	const char *bssidmac = network["bssid"];
-	byte bssid[6];
-	parseBytes(bssidmac, ':', bssid, 6, 16);
+#ifdef DEBUG
+	Serial.println("[ INFO ] hostname");
+#endif
 	deviceHostname = strdup(general["hostnm"]);
+#ifdef DEBUG
+	Serial.print("[ INFO ] Starting Wifi : ");
+	Serial.println(deviceHostname);
+#endif
 	WiFi.hostname(deviceHostname);
 	if (!MDNS.begin(deviceHostname))
 	{
@@ -100,6 +104,9 @@ bool loadConfiguration()
 #endif
 	}
 	MDNS.addService("http", "tcp", 80);
+#ifdef DEBUG
+		Serial.println("[ INFO ] Http port 80!");
+#endif
 	const char *ntpserver = ntp["server"];
 	int ntpinter = ntp["interval"];
 	timeZone = ntp["timezone"];
@@ -108,7 +115,13 @@ bool loadConfiguration()
 	relayType = hardware["rtype"];
 	relayPin = hardware["rpin"];
 	pinMode(relayPin, OUTPUT);
+#ifdef DEBUG
+		Serial.println("[ INFO ] Set relay PIN!");
+#endif
 	digitalWrite(relayPin, !relayType);
+#ifdef DEBUG
+		Serial.println("[ INFO ] Write relay PIN!");
+#endif
 	const char *ssid = network["ssid"];
 	const char *password = network["pswd"];
 	wmode = network["wmode"];
@@ -146,6 +159,12 @@ bool loadConfiguration()
 	}
 	else
 	{
+		const char *bssidmac = network["bssid"];
+		byte bssid[6];
+	#ifdef DEBUG
+		Serial.println("[ INFO ] Start parsing!");
+	#endif
+		parseBytes(bssidmac, ':', bssid, 6, 16);
 		if (network["dhcp"] == "0")
 		{
 			WiFi.mode(WIFI_STA);

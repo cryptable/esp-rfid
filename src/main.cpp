@@ -192,6 +192,17 @@ void ICACHE_FLASH_ATTR setup()
 		}
 	}
 
+	if (formatreq)
+	{
+#ifdef DEBUG
+		Serial.println(F("[ WARN ] Factory reset initiated..."));
+#endif
+		SPIFFS.end();
+		ws.enable(false);
+		SPIFFS.format();
+		ESP.restart();
+	}
+	
 // #ifdef MFRC522
 	Serial.println("Set SPI: .\n");
 	SPI.begin(SCK_PIN, MISO_PIN, MOSI_PIN, SS_PIN);
@@ -313,17 +324,6 @@ void loop()
 			digitalWrite(relayPin, !relayType);
 			deactivateRelay = false;
 		}
-	}
-
-	if (formatreq)
-	{
-#ifdef DEBUG
-		Serial.println(F("[ WARN ] Factory reset initiated..."));
-#endif
-		SPIFFS.end();
-		ws.enable(false);
-		SPIFFS.format();
-		ESP.restart();
 	}
 
 	if (timerequest)
