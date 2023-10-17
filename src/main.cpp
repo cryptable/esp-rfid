@@ -209,9 +209,9 @@ void ICACHE_FLASH_ATTR setup()
 // #endif
 
 	// WiFiEventId_t wifiDisconnectHandler = 
-	WiFi.onEvent(onWifiDisconnect, SYSTEM_EVENT_STA_DISCONNECTED);
+	WiFi.onEvent(onWifiDisconnect, ARDUINO_EVENT_WIFI_STA_DISCONNECTED);
 	// WiFiEventId_t wifiConnectHandler = 
-	WiFi.onEvent(onWifiConnect, SYSTEM_EVENT_STA_CONNECTED);
+	WiFi.onEvent(onWifiConnect, ARDUINO_EVENT_WIFI_STA_CONNECTED);
 	configMode = loadConfiguration();
 	if (!configMode)
 	{
